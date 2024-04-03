@@ -1,0 +1,18 @@
+# webserver.yml
+
+---
+- name: Install and configure Apache
+  hosts: webservers
+  become: true
+  
+  tasks:
+    - name: Install Apache
+      yum:
+        name: httpd
+        state: present
+    
+    - name: Start Apache and enable it on boot
+      service:
+        name: httpd
+        state: started
+        enabled: true
